@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+$('#bioTextEnd').hide();
+
 $("#coverDiv p").fitText(1, { minFontSize: '70px', maxFontSize: '128px' });
 $("#bioHead p").fitText(1, { minFontSize: '40px', maxFontSize: '116px' });
 $("#bioText p").fitText(1, { minFontSize: '16px', maxFontSize: '30px' });
@@ -10,9 +12,50 @@ $(".navbar-nav li a").click(function(event) {
   $(".navbar-collapse").collapse('hide');
   });
 
-
-
+$(function() {
+  var oTop = $('#bioText').offset().top - window.innerHeight;
+    $(window).scroll(function(){
+    
+    var pTop = $('body').scrollTop();
+      console.log( pTop + ' - ' + oTop );
+    if( pTop > oTop ){
+        start_type();
+    }
+  });
 });
+
+function start_type(){
+  $(function() {
+    $('#bioText').typed({
+      stringsElement: $('#paragraphText'),
+      typeSpeed: 40,
+      backSpeed: -1000,
+      callback: function() {
+        $('#bioText').remove();
+        $('#bioTextEnd').show();
+      },
+    }); 
+    
+      $('.stops').on('click', function() {
+        $('#paragraphText').typed('stops');
+        $('#bioText').remove();
+        $('#bioTextEnd').show();
+        $('#skipBtn').remove();
+      });
+            // No start button on page
+    // $('.start').on('click', function() {
+    //     $('#bioText').data('typed').continueTyping();
+    //   });
+  });
+}
+
+
+
+
+
+ 
+
+}); //End of doc ready
 
  
 
@@ -51,3 +94,4 @@ $(".navbar-nav li a").click(function(event) {
   };
 
 })( jQuery );
+
