@@ -1,9 +1,15 @@
 $(document).ready(function() {
 
-//Fixes the background jumping when the address bar is hidden on certain devices
+//Prevents background resiging on mobile when address bar hides on iOS and Android
+var bg = jQuery("#bg1, #bg2");
+jQuery(window).resize("resizeBackground");
 function resizeBackground() {
-    bg.height($(window).height() + 60);
+    bg.height(jQuery(window).height() + 60);
 }
+resizeBackground();
+
+
+
 
 //Hide the Skip Button and Biography Text which may be called
 $('#skipBtn').hide();
@@ -13,7 +19,7 @@ $('#bioTextEnd').hide();
 //Responsive FitText.js developed by GitHub: davatron5000 
 $("#coverDiv p").fitText(1, { minFontSize: '27px', maxFontSize: '128px' });
 $("#bioHead p").fitText(1, { minFontSize: '26px', maxFontSize: '116px' });
-$("#bioText, #bioTextEnd").fitText(1, { minFontSize: '3rem', maxFontSize: '40rem' });
+// $("#bioText, #bioTextEnd").fitText(1, { minFontSize: '14px', maxFontSize: '24px' });
 $("#someWorkDiv p").fitText(1, { minFontSize: '26px', maxFontSize: '70px' });
 $("#footer-main p, li").fitText(1, { minFontSize: '8px', maxFontSize: '15px' });
 
