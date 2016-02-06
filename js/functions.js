@@ -1,29 +1,52 @@
 $(document).ready(function() {
 
+//Hide the Skip Button and Biography Text which may be called
+$('#skipBtn').hide();
 $('#bioTextEnd').hide();
 
-$("#coverDiv p").fitText(1, { minFontSize: '70px', maxFontSize: '128px' });
-$("#bioHead p").fitText(1, { minFontSize: '40px', maxFontSize: '116px' });
-$("#bioText p").fitText(1, { minFontSize: '16px', maxFontSize: '30px' });
-$("#someWorkDiv p").fitText(1, { minFontSize: '40px', maxFontSize: '116px' });
-$("#footer-main p, li").fitText(1, { minFontSize: '12px', maxFontSize: '24px' });
 
+//Responsive FitText.js developed by GitHub: davatron5000 
+$("#coverDiv p").fitText(1, { minFontSize: '27px', maxFontSize: '128px' });
+$("#bioHead p").fitText(1, { minFontSize: '26px', maxFontSize: '116px' });
+$("#bioText, #bioTextEnd").fitText(1, { minFontSize: '6px', maxFontSize: '36px' });
+$("#someWorkDiv p").fitText(1, { minFontSize: '26px', maxFontSize: '70px' });
+$("#footer-main p, li").fitText(1, { minFontSize: '8px', maxFontSize: '15px' });
+
+//Navbar collapse
 $(".navbar-nav li a").click(function(event) {
   $(".navbar-collapse").collapse('hide');
   });
 
+
+//Stops the Typed.js from running
+(function( $ ) {
+  $.fn.stopNow = function() {
+    $('#skipBtn').remove();
+    $('#paragraphText').typed('stops');
+    $('#bioText').remove();
+    $('#bioTextEnd').show();
+    
+    };
+})(jQuery);
+
+/*Checks to see if screen size is <768px and if so runs stopNow() otherwise Typed.js will run until stop button is pressed or its completed.
+*/
 $(function() {
   var oTop = $('#bioText').offset().top - window.innerHeight;
     $(window).scroll(function(){
-    
-    var pTop = $('body').scrollTop();
-      console.log( pTop + ' - ' + oTop );
-    if( pTop > oTop ){
+      var pTop = $('body').scrollTop();
+        console.log( pTop + ' - ' + oTop );
+      if( pTop > oTop && $(window).width() < 767){
+        return;
+      } 
+      else if (pTop > oTop) {
+        $('#skipBtn').show();
         start_type();
-    }
+      }
   });
 });
 
+//Typed.js main function
 function start_type(){
   $(function() {
     $('#bioText').typed({
@@ -49,19 +72,13 @@ function start_type(){
   });
 }
 
-
-
-
-
- 
-
 }); //End of doc ready
 
  
 
 
 
-// FitText
+// FitText Main function
 (function( $ ){
 
   $.fn.fitText = function( kompressor, options ) {
