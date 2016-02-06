@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
 //Prevents background resiging on mobile when address bar hides on iOS and Android
-var bg = jQuery("#bg1, #bg2");
+var bg = jQuery("#cover", "#bioCover");
 jQuery(window).resize("resizeBackground");
 function resizeBackground() {
-    bg.height(jQuery(window).height());
+    bg.height(jQuery(window).height() + 60);
 }
 resizeBackground();
 
