@@ -1,6 +1,8 @@
 $(document).ready(function() {
+'use strict'
 
 //Prevents background resiging on mobile when address bar hides on iOS and Android
+
 var bg = jQuery("#cover", "#bioCover");
 jQuery(window).resize("resizeBackground");
 function resizeBackground() {
@@ -16,9 +18,10 @@ $('#skipBtn').hide();
 $('#bioTextEnd').hide();
 
 
-//Responsive FitText.js developed by GitHub: davatron5000 
+//Responsive FitText.js developed by GitHub: davatron5000//
 $("#coverDiv p").fitText(1, { minFontSize: '27px', maxFontSize: '128px' });
 $("#bioHead p").fitText(1, { minFontSize: '26px', maxFontSize: '116px' });
+
 // $("#bioText, #bioTextEnd").fitText(1, { minFontSize: '14px', maxFontSize: '24px' });
 $("#someWorkDiv p").fitText(1, { minFontSize: '26px', maxFontSize: '70px' });
 $("#footer-main p, li").fitText(1, { minFontSize: '8px', maxFontSize: '15px' });
@@ -29,17 +32,6 @@ $(".navbar-nav li a").click(function(event) {
   });
 
 
-//Stops the Typed.js from running
-(function( $ ) {
-  $.fn.stopNow = function() {
-    $('#skipBtn').remove();
-    $('#paragraphText').typed('stops');
-    $('#bioText').remove();
-    $('#bioTextEnd').show();
-    
-    };
-})(jQuery);
-
 /*Checks to see if screen size is <768px and if so runs stopNow() otherwise Typed.js will run until stop button is pressed or its completed.
 */
 $(function() {
@@ -49,7 +41,7 @@ $(function() {
         console.log( pTop + ' - ' + oTop );
       if( pTop > oTop && $(window).width() < 767){
         return;
-      } 
+      }
       else if (pTop > oTop) {
         $('#skipBtn').show();
         start_type();
@@ -62,30 +54,23 @@ function start_type(){
   $(function() {
     $('#bioText').typed({
       stringsElement: $('#paragraphText'),
-      typeSpeed: 40,
-      backSpeed: -1000,
+      typeSpeed: 43,
       callback: function() {
         $('#bioText').remove();
         $('#bioTextEnd').show();
+        $('#skipBtn').remove();
       },
-    }); 
-    
+    });
       $('.stops').on('click', function() {
         $('#paragraphText').typed('stops');
         $('#bioText').remove();
         $('#bioTextEnd').show();
         $('#skipBtn').remove();
       });
-            // No start button on page
-    // $('.start').on('click', function() {
-    //     $('#bioText').data('typed').continueTyping();
-    //   });
   });
 }
 
 }); //End of doc ready
-
- 
 
 
 
